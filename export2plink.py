@@ -17,7 +17,8 @@ def translate(annot, gt_row):
     # annot is [chrom, bp, alleleA, alleleB]
     a = annot[2]
     b = annot[3]
-    trans = {'0': a + ' ' + a, '1': a + ' ' + b, '2': b + ' ' + b, '-1': '0 0'}
+    trans = {'0' : a + ' ' + a, '1' : a + ' ' + b, '2' : b + ' ' + b, '-1'    : '0 0',
+             'AA': a + ' ' + a, 'AB': a + ' ' + b, 'BB': b + ' ' + b, 'NoCall': '0 0'}
     for gt in gt_row:
         t_gts.append(trans[gt])
     return t_gts
@@ -88,7 +89,7 @@ def make_ped_file(snp_list, annot_file, pop_file, gt_file, out_pre):
             for ind, gt in zip(sample_names, gts[snp_id]):
                 ped_dict[ind].append(gt)
 
-        for ind in pops:
+        for ind in sample_names:
             ped_file.write('\t'.join(ped_dict[ind]) + '\n')
 
 
