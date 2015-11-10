@@ -58,7 +58,7 @@ def make_ped_file(snp_list, annot_file, fam_file, gt_file, out_pre):
 
     fam_dict = od()
     for l in fam_file:
-        tmp = l.rstip().split()
+        tmp = l.rstrip().split()
         fam_dict[tmp[1]] = tmp
 
     kept_samples = []
@@ -88,7 +88,7 @@ def make_ped_file(snp_list, annot_file, fam_file, gt_file, out_pre):
             for ind, gt in zip(sample_names, gts[snp_id]):
                 fam_dict[ind].append(gt)
 
-        for ind in sample_names:
+        for ind in fam_dict:
             ped_file.write('\t'.join(fam_dict[ind]) + '\n')
 
 
