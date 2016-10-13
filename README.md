@@ -15,6 +15,8 @@ Table of Contents
       * [Genotypes file](#genotypes-file)
       * [SNP list file](#snp-list-file)
       * [Fam file](#fam-file)
+    * [Using export2plink.py](#using-export2plinkpy)
+  * [Examples for downstream analyses](#examples-for-downstream-analyses)
 
 #Intro
 While working on the [Axiom_aegypti1](http://g3journal.org/cgi/doi/10.1534/g3.114.016196) Affymetrix SNP chip, I wanted to get data out of the affy software in a simple and flexible way into standard genetics file formats. Here I'll try to guide you through getting set up and generating useable genotypes for new DNA samples run on the chip. There is a new piece of software that Affy offers called ["Axiom Analysis Suite"](http://www.affymetrix.com/estore/catalog/prod920001/AFFY/Axiom%26%23153%3B+Analysis+Suite#1_1) that natively outputs [vcf files](https://en.wikipedia.org/wiki/Variant_Call_Format) (and makes most of this redundant), but I haven't gotten it working with this custom chip. They say it should though, so give it a try if you want!
@@ -56,7 +58,8 @@ On your favorite windows computer, download [Affymetrix Genotyping Console](http
 ![setup5](/img/setup5.png?raw=true "setup5")
 
 #Genotyping
-Note: 
+*Note*: Please read the affy manual to fully understand what you are doing. This is meant to be a quick and dirty guide to getting data out, not to show you the ins and outs of the software, its quirks and its algorithms.
+
 TODO
 
 #Converting to ped file
@@ -98,7 +101,7 @@ I use the FID field to specify populations or groupings convenient to analyses, 
 
 ##Using `export2plink.py`
 
-If you call export2plink.py, you should get a usage message like this:
+If you call export2plink.py with no arguments, you should get a usage message like this:
 
 `usage: export2plink.py [-h] -a FILE -g FILE [-s FILE] [-f FILE] [-o PREFIX]`
 
@@ -109,3 +112,6 @@ An example, outputting genotypes from the wild sample data would look something 
 `export2plink.py -a resources/CsvAnnotationFile -g /path/to/AxiomGT1.calls.txt -s resources/evansetal2015_snps.txt -f resources/evansetal2015.fam -o reference_dataset`
 
 If successful, it should generate a `reference_dataset.ped` and `reference_dataset.fam` file in your current directory. Hooray!
+
+#Examples for downstream analyses
+TODO
